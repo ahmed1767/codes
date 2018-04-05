@@ -1,28 +1,33 @@
 .MODEL SMALL
 .STACK 100H
+.DATA
+ 
+;VARIABLE DECLARE
+
+VAR DB 5
+VAS DB ?
+
 .CODE
 
 MAIN PROC
+    
+    
+    MOV AX,@DATA
+    MOV DS,AX
+    ADD VAR,48
     MOV AH,1
     
     INT 21H
-    MOV BL,AL
-    
-    INT 21H
-    MOV CL,AL
-    
-    SUB BL,CL
-    ADD BL,48   
+    MOV VAS,AL
     
     MOV AH,2
-    
     MOV DL,0AH
     INT 21H
     
-    MOV DL,0DH
+    MOV DL,VAR
     INT 21H
     
-    MOV DL,BL
+    MOV DL,VAS
     INT 21H
     
     
